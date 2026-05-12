@@ -5,10 +5,23 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { MapPin, Calendar, Search, Users, ArrowRight, Star } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { DatePicker } from '@/components/ui/DatePicker';
 
 export default function Home() {
+  const router = useRouter();
   const [date, setDate] = React.useState<Date>();
+  const [location, setLocation] = React.useState('');
+  const [guests, setGuests] = React.useState('');
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (location) params.append('search', location);
+    if (date) params.append('date', date.toISOString());
+    if (guests) params.append('guests', guests);
+    
+    router.push(`/trips?${params.toString()}`);
+  };
 
   return (
     <div className="min-h-screen -mt-20">
@@ -44,7 +57,13 @@ export default function Home() {
                 <MapPin className="text-rose-500 w-5 h-5" />
                 <div className="flex flex-col">
                   <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Location</span>
-                  <input type="text" placeholder="Where to?" className="outline-none text-slate-900 font-medium bg-transparent placeholder:text-slate-400" />
+                  <input 
+                    type="text" 
+                    placeholder="Where to?" 
+                    className="outline-none text-slate-900 font-medium bg-transparent placeholder:text-slate-400"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="flex-1 min-w-0 flex items-center gap-3 px-4 py-3 border-b md:border-b-0 md:border-r border-slate-100">
@@ -60,10 +79,20 @@ export default function Home() {
                 <Users className="text-rose-500 w-5 h-5" />
                 <div className="flex flex-col">
                   <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Guests</span>
-                  <input type="text" placeholder="How many?" className="outline-none text-slate-900 font-medium bg-transparent placeholder:text-slate-400" />
+                  <input 
+                    type="text" 
+                    placeholder="How many?" 
+                    className="outline-none text-slate-900 font-medium bg-transparent placeholder:text-slate-400"
+                    value={guests}
+                    onChange={(e) => setGuests(e.target.value)}
+                  />
                 </div>
               </div>
-              <Button size="lg" className="md:w-auto w-full px-8 gap-2 rounded-2xl shadow-lg shadow-rose-500/20 active:scale-95 transition-transform">
+              <Button 
+                size="lg" 
+                className="md:w-auto w-full px-8 gap-2 rounded-2xl shadow-lg shadow-rose-500/20 active:scale-95 transition-transform"
+                onClick={handleSearch}
+              >
                 <Search className="w-5 h-5" />
                 Search
               </Button>
