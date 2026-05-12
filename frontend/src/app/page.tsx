@@ -5,60 +5,65 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { MapPin, Calendar, Search, Users, ArrowRight, Star } from 'lucide-react';
 import Link from 'next/link';
+import { DatePicker } from '@/components/ui/DatePicker';
 
 export default function Home() {
+  const [date, setDate] = React.useState<Date>();
+
   return (
     <div className="min-h-screen -mt-20">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-            alt="Himalayan Mountain" 
+          <img
+            src="https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="Himalayan Mountain"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-slate-900/40 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
         </div>
-        
+
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-3xl"
+            className="max-w-5xl"
           >
             <h1 className="text-5xl md:text-7xl font-bold font-heading text-white leading-tight mb-6 tracking-tight">
-              Rise Beyond <br/>
+              Rise Beyond <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-rose-600">Limits</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl leading-relaxed">
               Every summit is a story, every expedition a journey into the heart of the Himalayas. Discover your true heights with Summit Seekers.
             </p>
-            
-            <div className="bg-white p-4 rounded-2xl shadow-xl flex flex-col md:flex-row gap-4 max-w-4xl">
-              <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-slate-200">
+
+            <div className="relative z-20 bg-white p-2 md:p-4 rounded-3xl shadow-2xl flex flex-col md:flex-row gap-2 md:gap-4 w-full max-w-5xl mx-auto backdrop-blur-sm bg-white/95">
+              <div className="flex-1 min-w-0 flex items-center gap-3 px-4 py-3 border-b md:border-b-0 md:border-r border-slate-100">
                 <MapPin className="text-rose-500 w-5 h-5" />
                 <div className="flex flex-col">
                   <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Location</span>
                   <input type="text" placeholder="Where to?" className="outline-none text-slate-900 font-medium bg-transparent placeholder:text-slate-400" />
                 </div>
               </div>
-              <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-slate-200">
+              <div className="flex-1 min-w-0 flex items-center gap-3 px-4 py-3 border-b md:border-b-0 md:border-r border-slate-100">
                 <Calendar className="text-rose-500 w-5 h-5" />
-                <div className="flex flex-col">
-                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Date</span>
-                  <input type="text" placeholder="When?" className="outline-none text-slate-900 font-medium bg-transparent placeholder:text-slate-400" />
-                </div>
+                <DatePicker 
+                  selected={date} 
+                  onSelect={setDate} 
+                  placeholder="When?"
+                  className="flex-1"
+                />
               </div>
-              <div className="flex-1 flex items-center gap-3 px-4 py-2">
+              <div className="flex-1 min-w-0 flex items-center gap-3 px-4 py-3">
                 <Users className="text-rose-500 w-5 h-5" />
                 <div className="flex flex-col">
                   <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Guests</span>
                   <input type="text" placeholder="How many?" className="outline-none text-slate-900 font-medium bg-transparent placeholder:text-slate-400" />
                 </div>
               </div>
-              <Button size="lg" className="md:w-auto w-full px-8 gap-2">
+              <Button size="lg" className="md:w-auto w-full px-8 gap-2 rounded-2xl shadow-lg shadow-rose-500/20 active:scale-95 transition-transform">
                 <Search className="w-5 h-5" />
                 Search
               </Button>
@@ -79,7 +84,7 @@ export default function Home() {
               View All <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { title: 'Treks', image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
@@ -87,7 +92,7 @@ export default function Home() {
               { title: 'Winter Treks', image: 'https://images.unsplash.com/photo-1478265409131-1f65c88f965c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
               { title: 'Homestays', image: 'https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
             ].map((cat, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 whileHover={{ y: -8 }}
                 className="group relative h-64 rounded-2xl overflow-hidden cursor-pointer"
@@ -115,7 +120,7 @@ export default function Home() {
             {[
               { id: 1, title: 'Kedarkantha Trek', price: '₹8,500', days: '6 Days', rating: 4.9, image: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', diff: 'Moderate' },
               { id: 2, title: 'Hampta Pass Trek', price: '₹9,500', days: '5 Days', rating: 4.8, image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', diff: 'Moderate' },
-              { id: 3, title: 'Kashmir Great Lakes', price: '₹14,500', days: '7 Days', rating: 5.0, image: 'https://images.unsplash.com/photo-1590457494191-8d2ef03dcb28?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', diff: 'Difficult' },
+              { id: 3, title: 'Kashmir Great Lakes', price: '₹14,500', days: '7 Days', rating: 5.0, image: 'https://prismic-io.s3.amazonaws.com/indiahike/8984f508-0053-4b04-ad01-14372310d402_DSCF4168.jpg', diff: 'Difficult' },
             ].map((trek) => (
               <div key={trek.id} className="group bg-white rounded-3xl border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300">
                 <div className="relative h-64 overflow-hidden">
@@ -148,7 +153,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-12">
             <Link href="/trips">
               <Button size="lg" variant="outline" className="rounded-full px-8">

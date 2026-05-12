@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { MapPin, Calendar, Clock, Mountain, CheckCircle2, XCircle, ChevronDown, ChevronUp, Star, Users } from 'lucide-react';
 import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/dist/style.css';
+import 'react-day-picker/style.css';
 
 export default function TripDetailsPage() {
   const params = useParams();
@@ -163,10 +163,27 @@ export default function TripDetailsPage() {
                       mode="single" 
                       selected={selectedDate} 
                       onSelect={setSelectedDate}
-                      disabled={[{ before: new Date() }]}
-                      modifiersClassNames={{
-                        selected: 'bg-rose-600 text-white hover:bg-rose-700 rounded-full',
-                        today: 'font-bold text-rose-600'
+                      disabled={{ before: new Date() }}
+                      classNames={{
+                        root: 'rdp-root !m-0 !text-slate-900',
+                        months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
+                        month: 'space-y-4',
+                        month_caption: 'flex justify-center pt-1 relative items-center h-10',
+                        caption_label: 'text-sm font-bold text-slate-900',
+                        nav: 'space-x-1 flex items-center',
+                        button_previous: 'absolute left-1 h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 transition-opacity',
+                        button_next: 'absolute right-1 h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 transition-opacity',
+                        month_grid: 'w-full border-collapse space-y-1',
+                        weekdays: 'flex',
+                        weekday: 'text-slate-400 rounded-md w-9 font-normal text-[0.8rem] text-center',
+                        week: 'flex w-full mt-2',
+                        day: 'h-9 w-9 text-center text-sm p-0 relative focus-within:relative focus-within:z-20',
+                        day_button: 'h-9 w-9 p-0 font-normal !text-slate-900 aria-selected:opacity-100 hover:bg-rose-50 rounded-lg transition-colors flex items-center justify-center',
+                        selected: 'bg-rose-600 !text-white hover:bg-rose-700 hover:text-white focus:bg-rose-600 focus:text-white rounded-lg',
+                        today: 'text-rose-600 font-bold underline decoration-2 underline-offset-4',
+                        outside: 'day-outside text-slate-400 opacity-50 aria-selected:bg-slate-100/50 aria-selected:text-slate-400 aria-selected:opacity-30',
+                        disabled: 'text-slate-300 opacity-50',
+                        hidden: 'invisible',
                       }}
                     />
                   </div>
