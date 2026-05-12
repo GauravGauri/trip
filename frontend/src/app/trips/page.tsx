@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -8,7 +8,7 @@ import { Search, MapPin, Star, Filter, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-export default function TripsPage() {
+function TripsContent() {
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
   const [selectedSeasons, setSelectedSeasons] = useState<string[]>([]);
@@ -202,5 +202,17 @@ export default function TripsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function TripsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-rose-600"></div>
+      </div>
+    }>
+      <TripsContent />
+    </Suspense>
   );
 }
