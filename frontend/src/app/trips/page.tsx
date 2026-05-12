@@ -13,16 +13,16 @@ export default function TripsPage() {
   const allTrips = [
     { id: 1, title: 'Kedarkantha Trek', price: '₹8,500', days: '6 Days', rating: 4.9, image: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', diff: 'Moderate', category: 'Winter Trek' },
     { id: 2, title: 'Hampta Pass Trek', price: '₹9,500', days: '5 Days', rating: 4.8, image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', diff: 'Moderate', category: 'Summer Trek' },
-    { id: 3, title: 'Kashmir Great Lakes', price: '₹14,500', days: '7 Days', rating: 5.0, image: 'https://images.unsplash.com/photo-1590457494191-8d2ef03dcb28?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', diff: 'Difficult', category: 'Monsoon Trek' },
+    { id: 3, title: 'Kashmir Great Lakes', price: '₹14,500', days: '7 Days', rating: 5.0, image: 'https://prismic-io.s3.amazonaws.com/indiahike/8984f508-0053-4b04-ad01-14372310d402_DSCF4168.jpg', diff: 'Difficult', category: 'Monsoon Trek' },
     { id: 4, title: 'Goechala Trek', price: '₹16,500', days: '11 Days', rating: 4.9, image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', diff: 'Difficult', category: 'Spring Trek' },
     { id: 5, title: 'Buran Ghati Pass', price: '₹12,000', days: '7 Days', rating: 4.7, image: 'https://images.unsplash.com/photo-1521651201144-634f700b36ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', diff: 'Moderate-Difficult', category: 'Summer Trek' },
-    { id: 6, title: 'Rupin Pass Trek', price: '₹13,500', days: '8 Days', rating: 4.8, image: 'https://images.unsplash.com/photo-1627896157734-4bc14930df30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', diff: 'Difficult', category: 'Summer Trek' },
+    { id: 6, title: 'Rupin Pass Trek', price: '₹13,500', days: '8 Days', rating: 4.8, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROl07is-LLW42lRjKt5914EHe0wHiE5a8ayg&s', diff: 'Difficult', category: 'Summer Trek' },
   ];
 
   return (
     <div className="min-h-screen bg-slate-50 pt-10 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header & Search */}
         <div className="bg-slate-900 rounded-3xl p-8 md:p-12 mb-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 opacity-20">
@@ -31,13 +31,13 @@ export default function TripsPage() {
           <div className="relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold font-heading text-white mb-4">Find Your Next Adventure</h1>
             <p className="text-slate-300 max-w-2xl mx-auto mb-8">Browse our collection of expertly curated Himalayan treks and expeditions.</p>
-            
+
             <div className="bg-white p-2 rounded-2xl flex flex-col md:flex-row gap-2 max-w-3xl mx-auto shadow-xl">
               <div className="flex-1 flex items-center bg-slate-50 rounded-xl px-4 py-3">
                 <Search className="w-5 h-5 text-slate-400 mr-3" />
-                <input 
-                  type="text" 
-                  placeholder="Search destinations, treks..." 
+                <input
+                  type="text"
+                  placeholder="Search destinations, treks..."
                   className="bg-transparent border-none outline-none w-full text-slate-900 placeholder:text-slate-400"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -50,7 +50,7 @@ export default function TripsPage() {
 
         {/* Content */}
         <div className="flex flex-col md:flex-row gap-8">
-          
+
           {/* Filters Sidebar */}
           <div className="w-full md:w-64 shrink-0">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 sticky top-28">
@@ -58,7 +58,7 @@ export default function TripsPage() {
                 <Filter className="w-5 h-5 text-rose-500" />
                 Filters
               </div>
-              
+
               <div className="space-y-6">
                 <div>
                   <h4 className="font-semibold text-slate-900 mb-3 text-sm">Season</h4>
@@ -90,10 +90,10 @@ export default function TripsPage() {
           {/* Grid */}
           <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {allTrips.map((trek) => (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                key={trek.id} 
+                key={trek.id}
                 className="group bg-white rounded-3xl border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col"
               >
                 <div className="relative h-56 overflow-hidden shrink-0">
@@ -112,7 +112,7 @@ export default function TripsPage() {
                       <h3 className="text-lg font-bold font-heading text-slate-900 leading-tight">{trek.title}</h3>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-4 text-sm text-slate-500 mt-2 mb-6">
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4 text-slate-400" />
